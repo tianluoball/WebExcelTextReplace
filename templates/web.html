@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Replacement Tool</title>
+</head>
+<body>
+    <h1>Text Replacement Tool</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="input_text">Input Text:</label><br>
+        <textarea id="input_text" name="input_text" rows="5" cols="50">{{ request.form['input_text'] if request.form.get('input_text') else '' }}</textarea><br>
+        <label for="row_number">Row Number:</label><br>
+        <input type="number" id="row_number" name="row_number" min="1" value="{{ request.form['row_number'] if request.form.get('row_number') else '1' }}"><br>
+        <label for="excel_file">Select Excel File:</label><br>
+        <input type="file" id="excel_file" name="excel_file"><br>
+        <button type="submit">Run</button>
+    </form>
+    {% if replaced_text %}
+    <h2>Replaced Text:</h2>
+    <textarea rows="5" cols="50">{{ replaced_text }}</textarea>
+    {% endif %}
+</body>
+</html>
